@@ -1,0 +1,88 @@
+version: '2'
+
+services:
+  mongo1:
+    build: ./
+    image: mongo:4.0.11-replica-set
+    container_name: mongo1
+    command: mongod --config /data/mongo/config/mongod.conf
+    domainname: eventhorizon.com.br
+    hostname: mongo1
+    networks:
+      localbridge:
+        aliases:
+          - mongo1
+          - mongo1.eventhorizon.com.br
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongod.conf.yml:/data/mongo/config/mongod.conf
+      - ./replica-set-init.js:/data/mongo/init/replica-set-init.js
+  mongo2:
+    build: ./
+    image: mongo:mymongo
+    container_name: mongo2
+    command: mongod --config /data/mongo/config/mongod.conf
+    domainname: eventhorizon.com.br
+    hostname: mongo2
+    networks:
+      localbridge:
+        aliases:
+          - mongo2
+          - mongo2.eventhorizon.com.br
+    ports:
+      - '27018:27017'
+    volumes:
+      - ./mongod.conf.yml:/data/mongo/config/mongod.conf
+  mongo3:
+    build: ./
+    image: mongo:mymongo
+    container_name: mongo3
+    command: mongod --config /data/mongo/config/mongod.conf
+    domainname: eventhorizon.com.br
+    hostname: mongo3
+    networks:
+      localbridge:
+        aliases:
+          - mongo3
+          - mongo3.eventhorizon.com.br
+    ports:
+      - '27019:27017'
+    volumes:
+      - ./mongod.conf.yml:/data/mongo/config/mongod.conf
+  mongo4:
+    build: ./
+    image: mongo:mymongo
+    container_name: mongo4
+    command: mongod --config /data/mongo/config/mongod.conf
+    domainname: eventhorizon.com.br
+    hostname: mongo4
+    networks:
+      localbridge:
+        aliases:
+          - mongo4
+          - mongo4.eventhorizon.com.br
+    ports:
+      - '27020:27017'
+    volumes:
+      - ./mongod.conf.yml:/data/mongo/config/mongod.conf
+  mongo5:
+    build: ./
+    image: mongo:mymongo
+    container_name: mongo5
+    command: mongod --config /data/mongo/config/mongod.conf
+    domainname: eventhorizon.com.br
+    hostname: mongo5
+    networks:
+      localbridge:
+        aliases:
+          - mongo5
+          - mongo5.eventhorizon.com.br
+    ports:
+      - '27021:27017'
+    volumes:
+      - ./mongod.conf.yml:/data/mongo/config/mongod.conf
+
+networks:
+  localbridge:
+    driver: bridge
